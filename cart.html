@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-ao">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho - LuandaStore</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">LUANDA<span>STORE</span></a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="index.html#produtos">Catálogo</a>
+            </nav>
+            <div class="header-actions">
+                <a href="cart.html" class="cart-icon-wrapper active">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-section">
+        <h1 class="page-title">Meu Carrinho</h1>
+
+        <div id="cart-content">
+            <div id="cart-items-container">
+                <!-- Injected by JS -->
+                <p>Carregando itens...</p>
+            </div>
+
+            <div id="cart-summary-container" style="display: none;">
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">0 Kz</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="cart-total">0 Kz</span>
+                    </div>
+                    <button id="btn-open-checkout" class="btn btn-primary btn-full">Finalizar Pedido no WhatsApp</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Checkout -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Finalizar Pedido</h2>
+            <p>Preencha os seus dados para processar o pedido via WhatsApp.</p>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="full-name">Nome Completo *</label>
+                    <input type="text" id="full-name" required placeholder="Ex: João Silva">
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp-number">WhatsApp *</label>
+                    <input type="tel" id="whatsapp-number" required placeholder="Ex: 921225720">
+                </div>
+                <div class="form-group">
+                    <label for="delivery-address">Endereço de Entrega (Opcional)</label>
+                    <textarea id="delivery-address" rows="3" placeholder="Ex: Talatona, Rua do SIAC..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Enviar Pedido via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuandaStore. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

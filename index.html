@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-ao">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuandaStore - Qualidade em Talatona</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">LUANDA<span>STORE</span></a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Início</a>
+                <a href="#produtos">Catálogo</a>
+                <a href="#depoimentos">Depoimentos</a>
+            </nav>
+            <div class="header-actions">
+                <a href="cart.html" class="cart-icon-wrapper">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>As melhores ofertas em <span class="highlight">Talatona</span></h1>
+                    <p>Qualidade, rapidez e o melhor atendimento de Luanda entregues diretamente à sua porta.</p>
+                    <a href="#produtos" class="btn btn-primary">Ver Catálogo</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop" alt="Destaque">
+                </div>
+            </div>
+        </section>
+
+        <section class="categories py-section">
+            <div class="container">
+                <h2 class="section-title">Categorias</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="filterByCategory('Eletrónicos')">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h3>Eletrónicos</h3>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Moda')">
+                        <i class="fa-solid fa-shirt"></i>
+                        <h3>Moda</h3>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Casa')">
+                        <i class="fa-solid fa-house"></i>
+                        <h3>Casa</h3>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Desporto')">
+                        <i class="fa-solid fa-basketball"></i>
+                        <h3>Desporto</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="novidades" class="products py-section">
+            <div class="container">
+                <h2 class="section-title">Novidades e Mais Vendidos</h2>
+                <div id="featured-grid" class="product-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="produtos" class="products py-section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Catálogo Completo</h2>
+                    <div class="filters">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="search-input" placeholder="Pesquisar...">
+                        </div>
+                        <select id="category-select">
+                            <option value="all">Todas as Categorias</option>
+                            <option value="Eletrónicos">Eletrónicos</option>
+                            <option value="Moda">Moda</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Desporto">Desporto</option>
+                        </select>
+                        <select id="price-select">
+                            <option value="all">Todos os Preços</option>
+                            <option value="0-50000">Até 50.000 Kz</option>
+                            <option value="50000-200000">50.000 - 200.000 Kz</option>
+                            <option value="200000-500000">200.000 - 500.000 Kz</option>
+                            <option value="500000+">Acima de 500.000 Kz</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="product-grid" class="product-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="depoimentos" class="testimonials py-section">
+            <div class="container">
+                <h2 class="section-title">O que dizem os nossos clientes</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"Entrega super rápida em Talatona. O produto chegou em perfeitas condições e o atendimento via WhatsApp foi impecável."</p>
+                        <div class="author">
+                            <strong>João Silva</strong>
+                            <span>Talatona, Luanda</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"Excelente variedade e preços justos. Já comprei 3 vezes e recomendo sempre aos amigos."</p>
+                        <div class="author">
+                            <strong>Maria António</strong>
+                            <span>Nova Vida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="logo">LUANDA<span>STORE</span></div>
+                    <p>A sua loja de confiança em Luanda.</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p><i class="fa-solid fa-phone"></i> +244 921 225 720</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Talatona, Luanda</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuandaStore. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="js/config.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.getElementById('whatsapp-float').href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}`;
+    </script>
+</body>
+</html>

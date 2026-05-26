@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-ao">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto - LuandaStore</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">LUANDA<span>STORE</span></a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="index.html#produtos">Catálogo</a>
+                <a href="#depoimentos">Depoimentos</a>
+            </nav>
+            <div class="header-actions">
+                <a href="cart.html" class="cart-icon-wrapper">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="product-detail-container">
+        <!-- Injected by JS -->
+        <div class="container py-section">
+            <p>Carregando produto...</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="logo">LUANDA<span>STORE</span></div>
+                    <p>A sua loja de confiança em Luanda.</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p><i class="fa-solid fa-phone"></i> +244 921 225 720</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Talatona, Luanda</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuandaStore. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="js/config.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/product-detail.js"></script>
+    <script>
+        document.getElementById('whatsapp-float').href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}`;
+    </script>
+</body>
+</html>

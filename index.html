@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngolaShop - A Sua Loja em Talatona</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="A melhor loja online em Talatona, Luanda. Electrónicos, moda e casa com entrega rápida e pagamento na entrega.">
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold flex items-center">
+                <span class="text-green-600">Angola</span><span class="text-orange-500">Shop</span>
+            </div>
+
+            <div class="hidden md:flex space-x-6 text-sm">
+                <a href="#" class="hover:text-green-600 font-bold uppercase tracking-wider">Início</a>
+                <a href="#produtos" class="hover:text-green-600 font-bold uppercase tracking-wider">Catálogo</a>
+                <a href="#depoimentos" class="hover:text-green-600 font-bold uppercase tracking-wider">Depoimentos</a>
+                <a href="#contacto" class="hover:text-green-600 font-bold uppercase tracking-wider">Contacto</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button id="cart-btn" class="relative p-2 text-gray-600 hover:text-green-600 transition">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-black text-white py-16 md:py-24 overflow-hidden">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+            <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    As melhores ofertas em <span class="text-green-500">Talatona</span> agora à distância de um clique!
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
+                    Produtos de qualidade com entrega rápida em Luanda. Compre online e pague na entrega ou via transferência bancária.
+                </p>
+                <a href="#produtos" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-lg transition inline-block shadow-lg shadow-green-900/20">
+                    Ver Catálogo
+                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop" alt="Hero Product" class="rounded-2xl shadow-2xl max-w-full h-auto transform -rotate-2 hover:rotate-0 transition duration-500">
+            </div>
+        </div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl opacity-20 -mr-32 -mt-32"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-green-600 rounded-full blur-3xl opacity-10 -ml-32 -mb-32"></div>
+    </section>
+
+    <!-- Categorias em Destaque -->
+    <section class="py-12 bg-white border-b">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-10">Categorias em Destaque</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <button onclick="filterByCategory('Electrónicos')" class="category-card group focus:outline-none">
+                    <div class="bg-gray-50 rounded-3xl p-8 mb-4 group-hover:bg-green-600 group-hover:text-white transition duration-300 shadow-sm border border-gray-100">
+                        <i class="fa-solid fa-mobile-screen-button text-4xl"></i>
+                    </div>
+                    <h3 class="font-bold">Electrónicos</h3>
+                </button>
+                <button onclick="filterByCategory('Moda')" class="category-card group focus:outline-none">
+                    <div class="bg-gray-50 rounded-3xl p-8 mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 shadow-sm border border-gray-100">
+                        <i class="fa-solid fa-shirt text-4xl"></i>
+                    </div>
+                    <h3 class="font-bold">Moda</h3>
+                </button>
+                <button onclick="filterByCategory('Casa')" class="category-card group focus:outline-none">
+                    <div class="bg-gray-50 rounded-3xl p-8 mb-4 group-hover:bg-green-600 group-hover:text-white transition duration-300 shadow-sm border border-gray-100">
+                        <i class="fa-solid fa-house text-4xl"></i>
+                    </div>
+                    <h3 class="font-bold">Casa</h3>
+                </button>
+                <button onclick="filterByCategory('Desporto')" class="category-card group focus:outline-none">
+                    <div class="bg-gray-50 rounded-3xl p-8 mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 shadow-sm border border-gray-100">
+                        <i class="fa-solid fa-basketball text-4xl"></i>
+                    </div>
+                    <h3 class="font-bold">Desporto</h3>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros e Produtos -->
+    <section id="produtos" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 space-y-4 md:space-y-0 border-l-4 border-green-600 pl-6">
+                <div>
+                    <h2 class="text-3xl font-bold mb-1" id="cat-title">Novidades & Mais Vendidos</h2>
+                    <p class="text-gray-500">Qualidade garantida em Luanda</p>
+                </div>
+
+                <div class="flex flex-wrap gap-4 w-full md:w-auto">
+                    <div class="relative flex-grow md:flex-grow-0">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="search-input" placeholder="Pesquisar..." class="pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-600 w-full">
+                    </div>
+                    <select id="price-filter" class="px-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-600 bg-white">
+                        <option value="all">Preço: Todos</option>
+                        <option value="0-20000">Até 20.000 Kz</option>
+                        <option value="20000-100000">20.000 - 100.000 Kz</option>
+                        <option value="100000+">Acima de 100.000 Kz</option>
+                    </select>
+                    <button onclick="resetFilters()" class="text-sm font-bold text-green-600 hover:text-orange-500 transition">Limpar</button>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[400px]">
+                <!-- Skeleton loader/Injected by JS -->
+                <div class="animate-pulse bg-gray-100 rounded-2xl h-80"></div>
+                <div class="animate-pulse bg-gray-100 rounded-2xl h-80"></div>
+                <div class="animate-pulse bg-gray-100 rounded-2xl h-80"></div>
+                <div class="animate-pulse bg-gray-100 rounded-2xl h-80"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="py-20 bg-gray-900 text-white overflow-hidden relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">O que dizem os nossos clientes</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-black">
+                <div class="bg-white p-8 rounded-3xl relative">
+                    <div class="text-orange-500 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="italic mb-6">"Entrega super rápida em Talatona. O produto chegou em perfeitas condições e o atendimento via WhatsApp foi impecável."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center font-bold text-green-600 text-lg">JS</div>
+                        <div><h4 class="font-bold text-sm">João Silva</h4><p class="text-xs text-gray-500">Talatona, Luanda</p></div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl relative">
+                    <div class="text-orange-500 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="italic mb-6">"Excelente variedade e preços justos para a realidade de Luanda. Já comprei 3 vezes e recomendo sempre aos amigos."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600 text-lg">MA</div>
+                        <div><h4 class="font-bold text-sm">Maria António</h4><p class="text-xs text-gray-500">Nova Vida</p></div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl relative">
+                    <div class="text-orange-500 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <p class="italic mb-6">"Gostei muito da facilidade de pedir pelo site e confirmar tudo no WhatsApp. Muito intuitivo para quem usa mobile."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center font-bold text-green-600 text-lg">RK</div>
+                        <div><h4 class="font-bold text-sm">Ricardo K.</h4><p class="text-xs text-gray-500">Alvalade</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-green-600 rounded-full blur-3xl opacity-20"></div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="fixed inset-0 bg-black/70 z-[80] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-[2.5rem] w-full max-w-4xl max-h-[90vh] overflow-y-auto relative p-6 md:p-12 shadow-2xl">
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-4xl text-gray-400 hover:text-black transition">&times;</button>
+            <div id="modal-content" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Injected content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-white shadow-2xl z-[90] transform translate-x-full transition-transform duration-500 ease-in-out">
+        <div class="flex flex-col h-full">
+            <div class="p-8 border-b flex justify-between items-center bg-gray-50">
+                <div>
+                    <h2 class="text-2xl font-black">O Seu Carrinho</h2>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Resumo das suas escolhas</p>
+                </div>
+                <button id="close-cart" class="text-3xl text-gray-400 hover:text-black transition">&times;</button>
+            </div>
+
+            <div id="cart-items" class="flex-grow overflow-y-auto p-8 space-y-6">
+                <p id="empty-cart-msg" class="text-center text-gray-400 mt-20 font-medium">O seu carrinho está vazio no momento.</p>
+            </div>
+
+            <div class="p-8 border-t bg-gray-50">
+                <div class="flex justify-between text-xl font-black mb-8">
+                    <span>Total estimado:</span>
+                    <span id="cart-total" class="text-green-600">0 Kz</span>
+                </div>
+                <button id="checkout-btn" class="w-full bg-green-600 hover:bg-green-700 text-white py-5 rounded-2xl font-black text-lg transition shadow-xl shadow-green-900/10 disabled:opacity-50">
+                    Finalizar Pedido no WhatsApp
+                </button>
+                <p class="text-center text-xs text-gray-500 mt-4"><i class="fa-solid fa-lock mr-1"></i> Finalização rápida e segura via WhatsApp</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Checkout -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white rounded-3xl w-full max-w-md p-10 shadow-2xl">
+            <h2 class="text-3xl font-black mb-2">Quase lá!</h2>
+            <p class="text-gray-500 mb-8">Preencha os dados para gerar o seu pedido.</p>
+
+            <form id="whatsapp-form" data-netlify="true" name="pedidos" class="space-y-6">
+                <input type="hidden" name="form-name" value="pedidos">
+                <input type="hidden" name="cart_details" id="form-cart-details">
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Nome Completo *</label>
+                    <input type="text" id="cust-name" name="nome" required class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-green-100 focus:border-green-600 focus:outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">WhatsApp *</label>
+                    <input type="tel" id="cust-phone" name="whatsapp" required placeholder="9xx xxx xxx" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-green-100 focus:border-green-600 focus:outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Endereço de Entrega</label>
+                    <textarea id="cust-address" name="endereco" rows="2" placeholder="Bairro, Rua, Prédio..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-green-100 focus:border-green-600 focus:outline-none transition"></textarea>
+                </div>
+                <div class="pt-4 flex space-x-4">
+                    <button type="button" onclick="closeCheckout()" class="flex-1 px-6 py-4 border border-gray-200 rounded-2xl font-bold hover:bg-gray-50 transition">Voltar</button>
+                    <button type="submit" id="submit-order-btn" class="flex-1 px-6 py-4 bg-green-600 text-white rounded-2xl font-bold hover:bg-green-700 transition shadow-lg shadow-green-900/20">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-gray-900 text-white pt-20 pb-10">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="md:col-span-2">
+                <div class="text-3xl font-bold mb-6">
+                    <span class="text-green-500">Angola</span>Shop
+                </div>
+                <p class="text-gray-400 max-w-sm mb-8 text-lg">A sua loja de confiança para eletrónicos e acessórios em Talatona. Qualidade, rapidez e o melhor atendimento de Luanda.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="h-10 w-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="h-10 w-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="h-10 w-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-sm font-black uppercase tracking-widest mb-8 text-gray-500">Navegação</h3>
+                <ul class="space-y-4 text-gray-300 font-medium">
+                    <li><a href="#" class="hover:text-green-500 transition">Início</a></li>
+                    <li><a href="#produtos" class="hover:text-green-500 transition">Todos os Produtos</a></li>
+                    <li><a href="#depoimentos" class="hover:text-green-500 transition">Depoimentos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-sm font-black uppercase tracking-widest mb-8 text-gray-500">Contacto</h3>
+                <ul class="space-y-4 text-gray-300 font-medium">
+                    <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-green-500"></i> +244 921 225 720</li>
+                    <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-orange-500"></i> Talatona, Luanda</li>
+                    <li class="flex items-start"><i class="fa-solid fa-clock mt-1 mr-3 text-gray-500"></i> Seg - Sáb: 08:00 - 18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 border-t border-white/5 mt-20 pt-10 text-center text-gray-500 text-sm">
+            &copy; 2024 AngolaShop. Feito com <i class="fa-solid fa-heart text-red-600 mx-1"></i> para Angola.
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/244921225720" target="_blank" class="fixed bottom-6 right-6 bg-[#25d366] text-white h-16 w-16 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition z-50 animate-bounce">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="app.js"></script>
+</body>
+</html>

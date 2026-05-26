@@ -20,14 +20,18 @@ async function fetchProducts() {
 }
 
 function renderFeaturedProducts() {
-    const featuredGrid = document.getElementById('featured-grid');
-    if (!featuredGrid) return;
+    const newArrivalsGrid = document.getElementById('new-arrivals-grid');
+    const bestSellersGrid = document.getElementById('best-sellers-grid');
 
-    const featured = products.filter(p => p.tag === 'Destaque' || p.tag === 'Novo' || p.oldPrice);
-    // Show only first 4 featured items
-    const displayItems = featured.slice(0, 4);
+    if (newArrivalsGrid) {
+        const news = products.filter(p => p.tag === 'Novidade' || p.tag === 'Novo');
+        newArrivalsGrid.innerHTML = news.slice(0, 4).map(product => generateProductHTML(product)).join('');
+    }
 
-    featuredGrid.innerHTML = displayItems.map(product => generateProductHTML(product)).join('');
+    if (bestSellersGrid) {
+        const best = products.filter(p => p.isBestSeller);
+        bestSellersGrid.innerHTML = best.slice(0, 4).map(product => generateProductHTML(product)).join('');
+    }
 }
 
 function renderProducts(productsToRender) {
@@ -65,7 +69,7 @@ function generateProductHTML(product) {
 }
 
 function formatPrice(price) {
-    return price.toLocaleString('pt-AO') + ' Kz';
+    return price.toLocaleString('pt-AO') + ' ' + CONFIG.CURRENCY;
 }
 
 function setupFilters() {

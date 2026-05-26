@@ -39,7 +39,7 @@ async function renderCart() {
                         <img src="${product.images[0]}" alt="${product.name}" class="cart-item-img">
                         <div class="cart-item-info">
                             <h3>${product.name}</h3>
-                            <p class="cart-item-price">${product.price.toLocaleString('pt-AO')} Kz</p>
+                            <p class="cart-item-price">${product.price.toLocaleString('pt-AO')} ${CONFIG.CURRENCY}</p>
                         </div>
                         <div class="cart-item-actions">
                             <div class="quantity-controls">
@@ -59,8 +59,8 @@ async function renderCart() {
         html += '</div>';
         container.innerHTML = html;
 
-        document.getElementById('cart-subtotal').textContent = `${subtotal.toLocaleString('pt-AO')} Kz`;
-        document.getElementById('cart-total').textContent = `${subtotal.toLocaleString('pt-AO')} Kz`;
+        document.getElementById('cart-subtotal').textContent = `${subtotal.toLocaleString('pt-AO')} ${CONFIG.CURRENCY}`;
+        document.getElementById('cart-total').textContent = `${subtotal.toLocaleString('pt-AO')} ${CONFIG.CURRENCY}`;
         summaryContainer.style.display = 'block';
 
     } catch (error) {
@@ -113,11 +113,11 @@ function setupCheckoutModal() {
                 if (product) {
                     const itemTotal = product.price * item.quantity;
                     total += itemTotal;
-                    message += `- ${product.name} (x${item.quantity}): ${itemTotal.toLocaleString('pt-AO')} Kz\n`;
+                    message += `- ${product.name} (x${item.quantity}): ${itemTotal.toLocaleString('pt-AO')} ${CONFIG.CURRENCY}\n`;
                 }
             });
 
-            message += `\n*Total Geral: ${total.toLocaleString('pt-AO')} Kz*`;
+            message += `\n*Total Geral: ${total.toLocaleString('pt-AO')} ${CONFIG.CURRENCY}*`;
 
             // Log for Netlify (optional, can be improved with a real form submission)
             console.log('Pedido processado para:', name);
@@ -127,10 +127,27 @@ function setupCheckoutModal() {
 
             window.open(whatsappUrl, '_blank');
 
+            // Register order in history
+            registerOrder({
+                customer: { name, whatsapp, address },
+                items: cart.map(item => {
+                    const p = allProducts.find(prod => prod.id === item.id);
+                    return { id: item.id, name: p.name, quantity: item.quantity, price: p.price };
+                }),
+                total: total,
+                date: new Date().toISOString()
+            });
+
             // Clear cart and redirect
             localStorage.removeItem('luanda_store_cart');
             alert('Pedido enviado! Você será redirecionado para o WhatsApp.');
             window.location.href = 'index.html';
         };
     }
+}
+
+function registerOrder(order) {
+    const orders = JSON.parse(localStorage.getItem('luanda_store_orders') || '[]');
+    orders.push(order);
+    localStorage.setItem('luanda_store_orders', JSON.stringify(orders));
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuandaStore - Qualidade em Talatona</title>
+    <title>LUANDASTORE - Qualidade em Talatona</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -11,7 +11,7 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="index.html">LUANDA<span>STORE</span></a>
+                <a href="index.html" class="store-name-text">LUANDA<span>STORE</span></a>
             </div>
             <nav class="nav-links">
                 <a href="index.html" class="active">Início</a>
@@ -67,14 +67,23 @@
 
         <section id="novidades" class="products py-section">
             <div class="container">
-                <h2 class="section-title">Novidades e Mais Vendidos</h2>
-                <div id="featured-grid" class="product-grid">
+                <h2 class="section-title">Novidades</h2>
+                <div id="new-arrivals-grid" class="product-grid">
                     <!-- Injected by JS -->
                 </div>
             </div>
         </section>
 
-        <section id="produtos" class="products py-section bg-light">
+        <section id="mais-vendidos" class="products py-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Mais Vendidos</h2>
+                <div id="best-sellers-grid" class="product-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="produtos" class="products py-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Catálogo Completo</h2>
@@ -146,17 +155,17 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
-                    <div class="logo">LUANDA<span>STORE</span></div>
+                    <div class="logo store-name-text">LUANDA<span>STORE</span></div>
                     <p>A sua loja de confiança em Luanda.</p>
                 </div>
                 <div class="footer-contact">
                     <h3>Contacto</h3>
-                    <p><i class="fa-solid fa-phone"></i> +244 921 225 720</p>
-                    <p><i class="fa-solid fa-location-dot"></i> Talatona, Luanda</p>
+                    <p><i class="fa-solid fa-phone"></i> <span class="whatsapp-display-text">+244 921 225 720</span></p>
+                    <p><i class="fa-solid fa-location-dot"></i> <span class="store-address-text">Talatona, Luanda</span></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 LuandaStore. Todos os direitos reservados.</p>
+                <p>&copy; 2024 <span class="store-name-text">LuandaStore</span>. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -169,6 +178,16 @@
     <script src="js/cart.js"></script>
     <script src="js/app.js"></script>
     <script>
+        document.title = `${CONFIG.STORE_NAME} - Qualidade em Talatona`;
+        document.querySelectorAll('.store-name-text').forEach(el => {
+            if (el.tagName === 'A' || el.tagName === 'DIV' || el.classList.contains('logo')) {
+                el.innerHTML = CONFIG.STORE_NAME.replace('STORE', '<span>STORE</span>');
+            } else {
+                el.textContent = CONFIG.STORE_NAME;
+            }
+        });
+        document.querySelectorAll('.whatsapp-display-text').forEach(el => el.textContent = CONFIG.WHATSAPP_DISPLAY);
+        document.querySelectorAll('.store-address-text').forEach(el => el.textContent = CONFIG.STORE_ADDRESS);
         document.getElementById('whatsapp-float').href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}`;
     </script>
 </body>

@@ -45,8 +45,17 @@ Abra o ficheiro `products.json` e adicione novos itens seguindo o formato:
 }
 ```
 
-### 2. Alterar o Número do WhatsApp
-No ficheiro `js/checkout.js`, localize a variável que define o número de telefone (actualmente configurado para `+244 921225720`).
+### 2. Alterar Configurações (Nome, WhatsApp, Moeda)
+Abra o ficheiro `js/config.js` e altere os valores globais da loja:
+```javascript
+const CONFIG = {
+    WHATSAPP_NUMBER: "244921225720", // Apenas números
+    WHATSAPP_DISPLAY: "+244 921 225 720", // Formato visual
+    STORE_NAME: "LUANDASTORE",
+    STORE_ADDRESS: "Talatona, Luanda",
+    CURRENCY: "Kz"
+};
+```
 
 ## 🌐 Hospedagem no Netlify
 

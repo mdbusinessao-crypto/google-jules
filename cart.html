@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Carrinho - LuandaStore</title>
+    <title>Meu Carrinho - LUANDASTORE</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -11,7 +11,7 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="index.html">LUANDA<span>STORE</span></a>
+                <a href="index.html" class="store-name-text">LUANDA<span>STORE</span></a>
             </div>
             <nav class="nav-links">
                 <a href="index.html">Início</a>
@@ -78,13 +78,28 @@
     <footer>
         <div class="container">
             <div class="footer-bottom">
-                <p>&copy; 2024 LuandaStore. Todos os direitos reservados.</p>
+                <p>&copy; 2024 <span class="store-name-text">LuandaStore</span>. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <script src="js/config.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/checkout.js"></script>
+    <script>
+        document.title = `Meu Carrinho - ${CONFIG.STORE_NAME}`;
+        document.querySelectorAll('.store-name-text').forEach(el => {
+            if (el.tagName === 'A' || el.tagName === 'DIV' || el.classList.contains('logo')) {
+                el.innerHTML = CONFIG.STORE_NAME.replace('STORE', '<span>STORE</span>');
+            } else {
+                el.textContent = CONFIG.STORE_NAME;
+            }
+        });
+        document.getElementById('whatsapp-float').href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}`;
+    </script>
 </body>
 </html>

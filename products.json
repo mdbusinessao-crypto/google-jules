@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "name": "iPhone 15 Pro Max",
+        "price": 950000,
+        "oldPrice": 1100000,
+        "images": [
+            "https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800",
+            "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800"
+        ],
+        "category": "Eletrónicos",
+        "tag": "Novidade",
+        "isBestSeller": true,
+        "description": "O iPhone mais potente de sempre. Processador A17 Pro, sistema de câmeras profissional e acabamento em titânio aeroespacial. Perfeito para quem busca o máximo de performance em Luanda."
+    },
+    {
+        "id": 2,
+        "name": "Sapatilhas Nike Air Max",
+        "price": 85000,
+        "oldPrice": 95000,
+        "images": [
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
+        ],
+        "category": "Moda",
+        "tag": "Oferta",
+        "isBestSeller": true,
+        "description": "Conforto e estilo para o seu dia a dia. Design icónico com amortecimento Air Max. Ideal para passeios no Shopping de Talatona."
+    },
+    {
+        "id": 3,
+        "name": "Smart TV Samsung 55' 4K",
+        "price": 420000,
+        "images": [
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=800"
+        ],
+        "category": "Eletrónicos",
+        "isBestSeller": false,
+        "description": "Experiência de cinema em sua casa. Resolução 4K Ultra HD, HDR e as melhores apps de streaming integradas."
+    },
+    {
+        "id": 4,
+        "name": "Máquina de Café Nespresso",
+        "price": 125000,
+        "images": [
+            "https://images.unsplash.com/photo-1510520434124-5bc7e642b61d?w=800"
+        ],
+        "category": "Casa",
+        "tag": "Novidade",
+        "isBestSeller": false,
+        "description": "Comece as suas manhãs com o melhor aroma. Sistema de cápsulas fácil de usar e design elegante para a sua cozinha."
+    },
+    {
+        "id": 5,
+        "name": "Bola de Basquete Wilson",
+        "price": 25000,
+        "images": [
+            "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=800"
+        ],
+        "category": "Desporto",
+        "isBestSeller": false,
+        "description": "Alta durabilidade e excelente aderência. Sinta-se um profissional em cada lançamento."
+    },
+    {
+        "id": 6,
+        "name": "MacBook Air M2",
+        "price": 850000,
+        "images": [
+            "https://images.unsplash.com/photo-1611186871348-b1ec696e5237?w=800"
+        ],
+        "category": "Eletrónicos",
+        "tag": "Destaque",
+        "isBestSeller": true,
+        "description": "Incrivelmente fino e rápido. O MacBook Air com chip M2 é a ferramenta perfeita para trabalho e criatividade em qualquer lugar."
+    }
+]

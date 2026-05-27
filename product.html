@@ -43,8 +43,15 @@
                 </div>
                 <div class="footer-contact">
                     <h3>Contacto</h3>
-                    <p><i class="fa-solid fa-phone"></i> <span class="whatsapp-display-text">+244 921 225 720</span></p>
+                    <p><a href="#" class="whatsapp-link"><i class="fa-solid fa-phone"></i> <span class="whatsapp-display-text">+244 921 225 720</span></a></p>
                     <p><i class="fa-solid fa-location-dot"></i> <span class="store-address-text">Talatona, Luanda</span></p>
+                </div>
+                <div class="footer-social">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#" class="facebook-link" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="instagram-link" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -58,19 +65,8 @@
     </a>
 
     <script src="js/config.js"></script>
+    <script src="js/init.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/product-detail.js"></script>
-    <script>
-        document.querySelectorAll('.store-name-text').forEach(el => {
-            if (el.tagName === 'A' || el.tagName === 'DIV' || el.classList.contains('logo')) {
-                el.innerHTML = CONFIG.STORE_NAME.replace('STORE', '<span>STORE</span>');
-            } else {
-                el.textContent = CONFIG.STORE_NAME;
-            }
-        });
-        document.querySelectorAll('.whatsapp-display-text').forEach(el => el.textContent = CONFIG.WHATSAPP_DISPLAY);
-        document.querySelectorAll('.store-address-text').forEach(el => el.textContent = CONFIG.STORE_ADDRESS);
-        document.getElementById('whatsapp-float').href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}`;
-    </script>
 </body>
 </html>

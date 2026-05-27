@@ -109,10 +109,19 @@ function setupFilters() {
 
 window.filterByCategory = function(category) {
     const categorySelect = document.getElementById('category-select');
+    const catalogSection = document.getElementById('produtos');
+
     if (categorySelect) {
         categorySelect.value = category;
+        const event = new Event('change');
+        categorySelect.dispatchEvent(event);
+    } else {
+        // Fallback for home page category cards if selector not present or not loaded
         const filtered = products.filter(p => p.category === category);
         renderProducts(filtered);
-        document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (catalogSection) {
+        catalogSection.scrollIntoView({ behavior: 'smooth' });
     }
 };

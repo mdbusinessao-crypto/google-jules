@@ -11,7 +11,7 @@ function saveCart(cart) {
     updateCartBadge();
 }
 
-function addToCart(productId, quantity = 1) {
+window.addToCart = function(productId, quantity = 1) {
     let cart = getCart();
     const existingItem = cart.find(item => item.id === productId);
 
@@ -25,14 +25,14 @@ function addToCart(productId, quantity = 1) {
     showToast('Produto adicionado ao carrinho!');
 }
 
-function removeFromCart(productId) {
+window.removeFromCart = function(productId) {
     let cart = getCart();
     cart = cart.filter(item => item.id !== productId);
     saveCart(cart);
     if (typeof renderCart === 'function') renderCart();
 }
 
-function updateQuantity(productId, quantity) {
+window.updateQuantity = function(productId, quantity) {
     if (quantity <= 0) {
         removeFromCart(productId);
         return;

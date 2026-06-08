@@ -37,7 +37,7 @@ export default function Menu() {
               className={`relative rounded-full px-4 py-2 text-sm font-medium transition ${
                 filter === f
                   ? "text-white"
-                  : "text-orange-100/60 hover:text-white"
+                  : "text-cream/60 hover:text-white"
               }`}
             >
               {filter === f && (
@@ -54,7 +54,7 @@ export default function Menu() {
         {/* Grid */}
         <motion.div
           layout
-          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          className="mt-20 grid gap-x-6 gap-y-20 pt-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
           <AnimatePresence mode="popLayout">
             {items.map((item) => (

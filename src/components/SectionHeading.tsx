@@ -20,11 +20,11 @@ export default function SectionHeading({
           {eyebrow}
         </span>
       )}
-      <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
+      <h2 className="mt-4 font-display text-4xl font-extrabold uppercase leading-tight tracking-tight text-cream sm:text-5xl md:text-6xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base text-orange-100/60">{subtitle}</p>
+        <p className="mt-4 text-base text-cream/60">{subtitle}</p>
       )}
     </Reveal>
   );

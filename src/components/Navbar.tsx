@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { SITE } from "../config";
 import { useCart } from "../context/CartContext";
-import { CartIcon, MenuBars, CloseIcon, PhoneIcon } from "./Icons";
+import { createRipple } from "../utils/ripple";
+import { CartIcon, MenuBars, CloseIcon } from "./Icons";
 
 const links = [
   { to: "/", label: "Início" },
@@ -25,37 +25,35 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "py-2" : "py-4"
-      }`}
-    >
-      <div className="mx-auto max-w-7xl px-4">
+    <header className="fixed inset-x-0 top-0 z-50 px-4 py-3">
+      <div className="mx-auto max-w-7xl">
         <div
-          className={`flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300 ${
-            scrolled ? "glass shadow-card" : "bg-transparent"
+          className={`flex items-center justify-between rounded-full px-4 py-2.5 transition-all duration-300 ${
+            scrolled
+              ? "bg-burgundy-800/90 shadow-card backdrop-blur-md ring-1 ring-brand-500/20"
+              : "bg-transparent"
           }`}
         >
+          {/* Logo left */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-ember-600 text-lg font-black text-white shadow-glow">
+            <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-ember-500 font-display text-lg font-extrabold text-white shadow-glow">
               BA
             </span>
-            <span className="font-display text-xl font-extrabold tracking-tight">
-              Bom <span className="text-gradient">Apetite</span>
+            <span className="font-display text-2xl font-extrabold uppercase tracking-wide text-cream">
+              Bom <span className="text-brand-400">Apetite</span>
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          {/* Links center */}
+          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
             {links.map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}
                 end={l.to === "/"}
                 className={({ isActive }) =>
-                  `relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-white"
-                      : "text-orange-100/70 hover:text-white"
+                  `relative rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-wide transition-colors ${
+                    isActive ? "text-white" : "text-cream/70 hover:text-white"
                   }`
                 }
               >
@@ -74,18 +72,11 @@ export default function Navbar() {
             ))}
           </nav>
 
+          {/* Right: cart + Order Now */}
           <div className="flex items-center gap-2">
-            <a
-              href={SITE.tel}
-              className="hidden items-center gap-2 rounded-full border border-brand-500/30 px-4 py-2 text-sm font-semibold text-orange-100 transition hover:border-brand-400 hover:bg-brand-500/10 lg:flex"
-            >
-              <PhoneIcon className="h-4 w-4 text-brand-400" />
-              {SITE.phoneDisplay}
-            </a>
-
             <Link
               to="/carrinho"
-              className="relative grid h-11 w-11 place-items-center rounded-full bg-brand-500/15 text-white ring-1 ring-brand-400/40 transition hover:bg-brand-500/25"
+              className="relative grid h-11 w-11 place-items-center rounded-full bg-brand-500/15 text-cream ring-1 ring-brand-400/40 transition hover:bg-brand-500/25"
               aria-label="Carrinho"
             >
               <CartIcon className="h-5 w-5" />
@@ -96,7 +87,7 @@ export default function Navbar() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
-                    className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-ember-600 px-1 text-xs font-bold text-white"
+                    className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-ember-500 px-1 text-xs font-bold text-white"
                   >
                     {count}
                   </motion.span>
@@ -104,9 +95,17 @@ export default function Navbar() {
               </AnimatePresence>
             </Link>
 
+            <Link
+              to="/menu"
+              onClick={createRipple}
+              className="relative hidden overflow-hidden rounded-full bg-gradient-to-r from-brand-400 to-brand-500 px-6 py-2.5 text-sm font-bold uppercase tracking-wide text-burgundy-900 shadow-glow transition hover:scale-105 active:scale-95 sm:inline-flex"
+            >
+              Peça Já
+            </Link>
+
             <button
               onClick={() => setOpen((o) => !o)}
-              className="grid h-11 w-11 place-items-center rounded-full bg-white/5 text-white ring-1 ring-white/10 md:hidden"
+              className="grid h-11 w-11 place-items-center rounded-full bg-white/5 text-cream ring-1 ring-white/10 md:hidden"
               aria-label="Menu"
             >
               {open ? (
@@ -118,13 +117,14 @@ export default function Navbar() {
           </div>
         </div>
 
+        {/* Mobile menu */}
         <AnimatePresence>
           {open && (
             <motion.nav
               initial={{ opacity: 0, y: -10, height: 0 }}
               animate={{ opacity: 1, y: 0, height: "auto" }}
               exit={{ opacity: 0, y: -10, height: 0 }}
-              className="mt-2 overflow-hidden rounded-2xl glass p-2 md:hidden"
+              className="mt-2 overflow-hidden rounded-3xl bg-burgundy-800/95 p-2 shadow-card ring-1 ring-brand-500/20 backdrop-blur-md md:hidden"
             >
               {links.map((l) => (
                 <NavLink
@@ -133,22 +133,23 @@ export default function Navbar() {
                   end={l.to === "/"}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `block rounded-xl px-4 py-3 text-base font-medium transition ${
+                    `block rounded-2xl px-4 py-3 text-base font-semibold uppercase tracking-wide transition ${
                       isActive
                         ? "bg-brand-500/20 text-white"
-                        : "text-orange-100/80 hover:bg-white/5"
+                        : "text-cream/80 hover:bg-white/5"
                     }`
                   }
                 >
                   {l.label}
                 </NavLink>
               ))}
-              <a
-                href={SITE.tel}
-                className="mt-1 flex items-center gap-2 rounded-xl px-4 py-3 text-base font-semibold text-brand-300"
+              <Link
+                to="/menu"
+                onClick={() => setOpen(false)}
+                className="mt-1 block rounded-2xl bg-gradient-to-r from-brand-400 to-brand-500 px-4 py-3 text-center text-base font-bold uppercase tracking-wide text-burgundy-900"
               >
-                <PhoneIcon className="h-5 w-5" /> {SITE.phoneDisplay}
-              </a>
+                Peça Já
+              </Link>
             </motion.nav>
           )}
         </AnimatePresence>

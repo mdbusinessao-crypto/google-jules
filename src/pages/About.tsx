@@ -65,14 +65,14 @@ export default function About() {
               </h3>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-4 text-orange-100/70">
+              <p className="mt-4 text-cream/70">
                 Começámos com um sonho simples: servir comida angolana autêntica
                 com o carinho de casa. Hoje, somos um ponto de encontro em Morro
                 Bento, onde tradição e modernidade se encontram em cada prato.
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mt-4 text-orange-100/70">
+              <p className="mt-4 text-cream/70">
                 Da muamba de galinha ao mufete, dos grelhados na brasa aos
                 hambúrgueres artesanais, cada receita conta uma história de
                 sabor.
@@ -94,7 +94,7 @@ export default function About() {
                 <div className="font-display text-3xl font-black text-gradient sm:text-4xl">
                   {s.value}
                 </div>
-                <div className="mt-1 text-sm text-orange-100/60">{s.label}</div>
+                <div className="mt-1 text-sm text-cream/60">{s.label}</div>
               </div>
             </Reveal>
           ))}
@@ -113,7 +113,7 @@ export default function About() {
                   <h3 className="font-display text-lg font-bold text-white">
                     {v.title}
                   </h3>
-                  <p className="mt-2 text-sm text-orange-100/60">{v.desc}</p>
+                  <p className="mt-2 text-sm text-cream/60">{v.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -123,7 +123,7 @@ export default function About() {
         {/* contact strip */}
         <Reveal>
           <div className="mt-20 rounded-3xl glass p-8 text-center shadow-card">
-            <p className="text-orange-100/70">
+            <p className="text-cream/70">
               Quer reservar uma mesa ou fazer uma encomenda especial?
             </p>
             <a href={SITE.tel} className="btn-primary mt-4">

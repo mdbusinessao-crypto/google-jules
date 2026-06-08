@@ -16,12 +16,12 @@ export default function Invoice() {
 
   if (!invoice) {
     return (
-      <div className="min-h-screen bg-ink-900 px-4 py-20">
+      <div className="min-h-screen bg-burgundy-900 px-4 py-20">
         <div className="mx-auto max-w-md rounded-3xl glass p-10 text-center shadow-card">
           <h2 className="font-display text-2xl font-bold text-white">
             Sem factura disponível
           </h2>
-          <p className="mt-2 text-orange-100/60">
+          <p className="mt-2 text-cream/60">
             Faça um pedido para gerar a sua factura.
           </p>
           <Link to="/menu" className="btn-primary mt-6">
@@ -39,12 +39,12 @@ export default function Invoice() {
   });
 
   return (
-    <div className="min-h-screen bg-ink-900 px-4 py-10 print:bg-white print:py-0">
+    <div className="min-h-screen bg-burgundy-900 px-4 py-10 print:bg-white print:py-0">
       {/* Action bar */}
       <div className="no-print mx-auto mb-6 flex max-w-3xl flex-wrap items-center justify-between gap-3">
         <Link
           to="/"
-          className="text-sm text-orange-100/70 hover:text-white"
+          className="text-sm text-cream/70 hover:text-white"
         >
           ← Voltar ao início
         </Link>
@@ -185,7 +185,7 @@ export default function Invoice() {
         <Link
           to="/menu"
           onClick={() => clear()}
-          className="text-sm text-orange-100/60 hover:text-brand-300"
+          className="text-sm text-cream/60 hover:text-brand-300"
         >
           Fazer novo pedido (limpa o carrinho)
         </Link>

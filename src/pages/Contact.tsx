@@ -63,7 +63,7 @@ export default function Contact() {
                     {it.icon}
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-orange-100/50">
+                    <p className="text-xs uppercase tracking-wider text-cream/50">
                       {it.label}
                     </p>
                     {it.href ? (
@@ -102,21 +102,21 @@ export default function Contact() {
               <h3 className="font-display text-xl font-bold text-white">
                 Envie uma mensagem
               </h3>
-              <p className="mt-1 text-sm text-orange-100/60">
+              <p className="mt-1 text-sm text-cream/60">
                 Será encaminhado para o nosso WhatsApp.
               </p>
 
-              <label className="mt-6 block text-sm font-medium text-orange-100/80">
+              <label className="mt-6 block text-sm font-medium text-cream/80">
                 Nome
               </label>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="O seu nome"
-                className="mt-2 w-full rounded-xl border border-brand-500/20 bg-ink-900/60 px-4 py-3 text-white outline-none transition focus:border-brand-400"
+                className="mt-2 w-full rounded-xl border border-brand-500/20 bg-burgundy-900/60 px-4 py-3 text-white outline-none transition focus:border-brand-400"
               />
 
-              <label className="mt-4 block text-sm font-medium text-orange-100/80">
+              <label className="mt-4 block text-sm font-medium text-cream/80">
                 Mensagem
               </label>
               <textarea
@@ -124,7 +124,7 @@ export default function Contact() {
                 onChange={(e) => setMessage(e.target.value)}
                 rows={5}
                 placeholder="Como podemos ajudar?"
-                className="mt-2 w-full resize-none rounded-xl border border-brand-500/20 bg-ink-900/60 px-4 py-3 text-white outline-none transition focus:border-brand-400"
+                className="mt-2 w-full resize-none rounded-xl border border-brand-500/20 bg-burgundy-900/60 px-4 py-3 text-white outline-none transition focus:border-brand-400"
               />
 
               <button type="submit" className="btn-primary mt-6 w-full">

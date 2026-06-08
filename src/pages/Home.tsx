@@ -4,119 +4,115 @@ import { useRef } from "react";
 import { SITE } from "../config";
 import { POPULAR, MENU } from "../data/menu";
 import MenuCard from "../components/MenuCard";
-import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
-import Parallax from "../components/Parallax";
+import Particles from "../components/Particles";
 import TiltCard from "../components/TiltCard";
-import {
-  PhoneIcon,
-  WhatsAppIcon,
-  StarIcon,
-  ClockIcon,
-  PinIcon,
-} from "../components/Icons";
+import { createRipple } from "../utils/ripple";
+import { PhoneIcon, ArrowRight, StarIcon } from "../components/Icons";
 
-const heroImg =
-  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1100&q=80";
-const pizzaImg =
+const burger =
+  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80";
+const pizza =
   "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80";
+const burgers3 = [
+  "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=600&q=80",
+];
 
+/* ---------------- Hero ---------------- */
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const yText = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const yImg = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const scaleImg = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  // parallax: food moves slower than scroll
+  const yFood = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const yPizza = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden px-4 pb-10 pt-10 sm:pt-16"
+      className="section-burgundy relative overflow-hidden px-4 pb-24 pt-28 sm:pt-36"
     >
-      <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
+      <Particles count={12} seed={2} />
+      <div className="mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-2">
         <motion.div style={{ y: yText }} className="relative z-10">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand-300">
-              <StarIcon className="h-3.5 w-3.5 text-gold-400" /> Sabor angolano
-              em Morro Bento
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">
+              <StarIcon className="h-3.5 w-3.5 text-brand-400" /> Quente • Morro
+              Bento
             </span>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="mt-5 font-display text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-              <span className="text-gradient">BOM</span>
-              <br />
-              APETITE
+            <h1 className="mt-5 font-display text-7xl font-extrabold uppercase leading-[0.85] tracking-tight text-cream sm:text-8xl lg:text-9xl">
+              <span className="text-brand-400">Pizza</span> &<br />
+              Burger
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-5 max-w-md text-lg text-orange-100/70">
-              Pratos tradicionais, grelhados na brasa, hambúrgueres e pizzas —
-              fresquinhos e quentes, entregues com um toque futurista.
+            <p className="mt-6 max-w-md text-lg text-cream/70">
+              Pizzas, hambúrgueres e os sabores de Angola — fresquinhos, quentes
+              e entregues à sua porta no Morro Bento.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link to="/menu" className="btn-primary">
-                Ver Menu
+              <Link to="/menu" onClick={createRipple} className="btn-primary">
+                Peça Já <ArrowRight className="h-5 w-5" />
               </Link>
-              <a href={SITE.tel} className="btn-ghost">
+              <a href={SITE.tel} onClick={createRipple} className="btn-ghost">
                 <PhoneIcon className="h-5 w-5 text-brand-400" />
                 {SITE.phoneDisplay}
               </a>
             </div>
           </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-8 flex flex-wrap gap-6 text-sm text-orange-100/60">
-              <span className="flex items-center gap-2">
-                <ClockIcon className="h-4 w-4 text-brand-400" /> {SITE.hours}
-              </span>
-              <span className="flex items-center gap-2">
-                <PinIcon className="h-4 w-4 text-brand-400" /> Morro Bento
-              </span>
-            </div>
-          </Reveal>
         </motion.div>
 
-        <div className="relative">
+        {/* Floating food */}
+        <div className="relative h-[360px] sm:h-[460px]">
+          <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/30 blur-3xl sm:h-96 sm:w-96" />
+
           <motion.div
-            style={{ y: yImg, scale: scaleImg }}
-            className="relative z-10"
+            style={{ y: yPizza }}
+            className="absolute right-4 top-0 z-0 w-44 sm:w-60"
           >
-            <TiltCard intensity={14} className="group mx-auto max-w-md">
-              <motion.img
-                src={heroImg}
+            <img
+              src={pizza}
+              alt="Pizza"
+              className="animate-floatBig rounded-full shadow-food"
+            />
+          </motion.div>
+
+          <motion.div
+            style={{ y: yFood }}
+            className="absolute bottom-0 left-1/2 z-10 w-64 -translate-x-1/2 sm:w-80"
+          >
+            <TiltCard intensity={12} glare={false} className="group">
+              <img
+                src={burger}
                 alt="Hambúrguer Bom Apetite"
-                className="w-full rounded-[2rem] shadow-card"
-                animate={{ y: [0, -12, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                style={{ transform: "translateZ(60px)" }}
+                className="rounded-[2rem] shadow-food"
+                style={{ transform: "translateZ(50px)" }}
               />
             </TiltCard>
           </motion.div>
 
-          {/* glow ring */}
-          <div className="absolute left-1/2 top-1/2 -z-0 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/30 blur-3xl" />
-
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
-            className="absolute -bottom-2 left-0 z-20 hidden rounded-2xl glass px-4 py-3 shadow-card sm:block"
+            transition={{ delay: 0.6 }}
+            className="absolute bottom-6 left-2 z-20 rounded-2xl bg-burgundy-800/80 px-4 py-3 ring-1 ring-brand-500/30 backdrop-blur-md"
           >
-            <p className="text-xs text-orange-100/60">Avaliação dos clientes</p>
-            <div className="flex items-center gap-1 text-gold-400">
+            <div className="flex items-center gap-1 text-brand-400">
               {[...Array(5)].map((_, i) => (
                 <StarIcon key={i} className="h-4 w-4" />
               ))}
-              <span className="ml-1 text-sm font-bold text-white">4.9</span>
+              <span className="ml-1 text-sm font-bold text-cream">4.9</span>
             </div>
+            <p className="text-xs text-cream/60">+50 mil clientes</p>
           </motion.div>
         </div>
       </div>
@@ -124,133 +120,154 @@ function Hero() {
   );
 }
 
+/* ---------------- Fresh, Hot & Delicious (cream) ---------------- */
+function FreshHot() {
+  return (
+    <section className="section-cream relative overflow-hidden px-4 py-24">
+      <Particles count={12} seed={5} />
+      <div className="relative mx-auto max-w-5xl text-center">
+        <Reveal>
+          <h2 className="font-display text-5xl font-extrabold uppercase leading-none tracking-tight text-burgundy-800 sm:text-7xl">
+            Fresco, Quente &{" "}
+            <span className="text-ember-500">Delicioso</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <p className="mx-auto mt-5 max-w-xl text-burgundy-900/60">
+            Cada prato é preparado na hora com ingredientes selecionados. Da
+            muamba ao hambúrguer artesanal, levamos o melhor à sua mesa.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <Link
+            to="/menu"
+            onClick={createRipple}
+            className="btn-primary mt-7"
+          >
+            Ver Menu <ArrowRight className="h-5 w-5" />
+          </Link>
+        </Reveal>
+
+        {/* 3 centered burgers */}
+        <div className="mt-14 flex items-end justify-center gap-4 sm:gap-10">
+          {burgers3.map((src, i) => (
+            <Reveal key={src} delay={0.1 + i * 0.1}>
+              <motion.img
+                src={src}
+                alt={`Hambúrguer ${i + 1}`}
+                loading="lazy"
+                whileHover={{ y: -10, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 250, damping: 18 }}
+                className={`rounded-full object-cover shadow-food ring-4 ring-white ${
+                  i === 1
+                    ? "h-40 w-40 sm:h-56 sm:w-56"
+                    : "h-28 w-28 sm:h-44 sm:w-44"
+                }`}
+              />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Product grid (amber) ---------------- */
+function ProductGrid() {
+  return (
+    <section className="section-amber relative overflow-hidden px-4 py-24">
+      <Particles count={14} seed={8} />
+      <div className="relative mx-auto max-w-7xl">
+        <Reveal className="text-center">
+          <span className="inline-block rounded-full bg-burgundy-800/15 px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-burgundy-800">
+            O nosso menu
+          </span>
+          <h2 className="mt-4 font-display text-5xl font-extrabold uppercase tracking-tight text-burgundy-900 sm:text-6xl">
+            Pratos Populares
+          </h2>
+        </Reveal>
+
+        <div className="mt-20 grid gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-4">
+          {POPULAR.map((item, i) => (
+            <Reveal key={item.id} delay={i * 0.06}>
+              <MenuCard item={item} />
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <Link
+            to="/menu"
+            onClick={createRipple}
+            className="btn-dark"
+          >
+            Ver menu completo ({MENU.length} pratos)
+            <ArrowRight className="h-5 w-5" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Features + CTA ---------------- */
 const features = [
-  {
-    title: "Fresco & Quente",
-    desc: "Ingredientes frescos preparados na hora, sempre quentinhos.",
-    icon: "🔥",
-  },
-  {
-    title: "Entrega Rápida",
-    desc: "Entregamos em todo o Morro Bento e arredores em tempo recorde.",
-    icon: "🛵",
-  },
-  {
-    title: "Sabor Autêntico",
-    desc: "Receitas tradicionais angolanas com um toque moderno.",
-    icon: "🇦🇴",
-  },
+  { title: "Fresco & Quente", desc: "Preparado na hora, sempre quentinho.", icon: "🔥" },
+  { title: "Entrega Rápida", desc: "Em todo o Morro Bento e arredores.", icon: "🛵" },
+  { title: "Sabor Autêntico", desc: "Receitas angolanas com toque moderno.", icon: "🇦🇴" },
 ];
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <FreshHot />
+      <ProductGrid />
 
-      {/* Features band */}
-      <section className="px-4 py-16">
+      {/* Features */}
+      <section className="section-burgundy px-4 py-20">
         <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.08}>
-              <div className="h-full rounded-3xl glass p-6 text-center shadow-card transition hover:-translate-y-1">
+              <div className="h-full rounded-3xl glass p-7 text-center transition hover:-translate-y-1">
                 <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-brand-500/15 text-3xl">
                   {f.icon}
                 </div>
-                <h3 className="font-display text-lg font-bold text-white">
+                <h3 className="font-display text-xl font-bold uppercase tracking-wide text-cream">
                   {f.title}
                 </h3>
-                <p className="mt-2 text-sm text-orange-100/60">{f.desc}</p>
+                <p className="mt-2 text-sm text-cream/60">{f.desc}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* Fresh, Hot & Delicious split */}
-      <section className="relative overflow-hidden px-4 py-16">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
-          <Parallax offset={60}>
-            <TiltCard intensity={10} className="group">
-              <img
-                src={pizzaImg}
-                alt="Pizza Suprema"
-                className="w-full rounded-[2rem] shadow-card"
-                style={{ transform: "translateZ(40px)" }}
-              />
-            </TiltCard>
-          </Parallax>
-          <div>
-            <SectionHeading
-              center={false}
-              eyebrow="A nossa cozinha"
-              title={
-                <>
-                  Fresco, Quente &{" "}
-                  <span className="text-gradient">Delicioso</span>
-                </>
-              }
-              subtitle="Cada prato é preparado com ingredientes selecionados e muito carinho. Da muamba ao hambúrguer, levamos o melhor de Angola à sua mesa."
-            />
-            <Reveal delay={0.15}>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/menu" className="btn-primary">
-                  Explorar Menu
-                </Link>
-                <a href={SITE.whatsapp} className="btn-ghost">
-                  <WhatsAppIcon className="h-5 w-5 text-[#25D366]" /> Pedir agora
-                </a>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Popular dishes */}
-      <section className="px-4 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Pratos populares"
-            title="Os favoritos da casa"
-            subtitle="Os pratos mais pedidos pelos nossos clientes em Morro Bento."
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {POPULAR.map((item, i) => (
-              <Reveal key={item.id} delay={i * 0.06}>
-                <MenuCard item={item} />
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link to="/menu" className="btn-ghost">
-              Ver menu completo ({MENU.length} pratos)
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA banner */}
-      <section className="px-4 py-16">
+      {/* CTA */}
+      <section className="section-burgundy px-4 pb-24">
         <Reveal>
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-600 via-ember-600 to-brand-700 p-10 text-center shadow-glow sm:p-16">
-            <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" />
-            <h2 className="relative font-display text-3xl font-black text-white sm:text-5xl">
-              Com fome? Estamos a um toque de distância.
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-ember-500 via-ember-600 to-burgundy-700 p-10 text-center shadow-glow sm:p-16">
+            <Particles count={8} seed={11} />
+            <h2 className="relative font-display text-4xl font-extrabold uppercase text-white sm:text-6xl">
+              Com fome? Peça agora.
             </h2>
             <p className="relative mx-auto mt-4 max-w-xl text-white/80">
-              Faça já o seu pedido por telefone ou WhatsApp e receba em casa.
+              Faça o seu pedido por telefone ou WhatsApp e receba em casa.
             </p>
             <div className="relative mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href={SITE.tel}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 font-bold text-ember-700 shadow-lg transition hover:scale-105"
+                onClick={createRipple}
+                className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-7 py-3 font-bold text-ember-600 shadow-lg transition hover:scale-105 active:scale-95"
               >
                 <PhoneIcon className="h-5 w-5" /> {SITE.phoneDisplay}
               </a>
               <a
                 href={SITE.whatsapp}
-                className="inline-flex items-center gap-2 rounded-full bg-ink-900/30 px-7 py-3 font-bold text-white ring-1 ring-white/40 transition hover:scale-105"
+                onClick={createRipple}
+                className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-burgundy-900/40 px-7 py-3 font-bold text-white ring-1 ring-white/40 transition hover:scale-105 active:scale-95"
               >
-                <WhatsAppIcon className="h-5 w-5" /> WhatsApp
+                WhatsApp
               </a>
             </div>
           </div>

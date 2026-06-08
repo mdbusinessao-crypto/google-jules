@@ -59,7 +59,7 @@ export default function Cart() {
           <h2 className="font-display text-2xl font-bold text-white">
             O seu carrinho está vazio
           </h2>
-          <p className="mt-2 text-orange-100/60">
+          <p className="mt-2 text-cream/60">
             Adicione pratos deliciosos do nosso menu para começar.
           </p>
           <Link to="/menu" className="btn-primary mt-6">
@@ -108,7 +108,7 @@ export default function Cart() {
                     <p className="text-sm text-brand-300">
                       {formatKz(l.item.price)}
                     </p>
-                    <div className="mt-2 inline-flex items-center gap-3 rounded-full bg-ink-900/60 p-1">
+                    <div className="mt-2 inline-flex items-center gap-3 rounded-full bg-burgundy-900/60 p-1">
                       <button
                         onClick={() => setQty(l.item.id, l.qty - 1)}
                         className="grid h-7 w-7 place-items-center rounded-full bg-white/5 text-white hover:bg-brand-500/30"
@@ -145,7 +145,7 @@ export default function Cart() {
 
             <button
               onClick={clear}
-              className="text-sm text-orange-100/50 hover:text-ember-500"
+              className="text-sm text-cream/50 hover:text-ember-500"
             >
               Esvaziar carrinho
             </button>
@@ -165,24 +165,24 @@ export default function Cart() {
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="Nome completo *"
-                className="w-full rounded-xl border border-brand-500/20 bg-ink-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
+                className="w-full rounded-xl border border-brand-500/20 bg-burgundy-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
               />
               <input
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 placeholder="Telefone *"
-                className="w-full rounded-xl border border-brand-500/20 bg-ink-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
+                className="w-full rounded-xl border border-brand-500/20 bg-burgundy-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
               />
               <input
                 value={form.address}
                 onChange={(e) => setForm({ ...form, address: e.target.value })}
                 placeholder="Morada (Morro Bento, rua...) *"
-                className="w-full rounded-xl border border-brand-500/20 bg-ink-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
+                className="w-full rounded-xl border border-brand-500/20 bg-burgundy-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
               />
               <select
                 value={form.payment}
                 onChange={(e) => setForm({ ...form, payment: e.target.value })}
-                className="w-full rounded-xl border border-brand-500/20 bg-ink-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
+                className="w-full rounded-xl border border-brand-500/20 bg-burgundy-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
               >
                 <option>Numerário</option>
                 <option>Multicaixa Express</option>
@@ -193,7 +193,7 @@ export default function Cart() {
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 rows={2}
                 placeholder="Observações (opcional)"
-                className="w-full resize-none rounded-xl border border-brand-500/20 bg-ink-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
+                className="w-full resize-none rounded-xl border border-brand-500/20 bg-burgundy-900/60 px-4 py-2.5 text-sm text-white outline-none focus:border-brand-400"
               />
             </div>
 
@@ -218,7 +218,7 @@ export default function Cart() {
             </button>
             <a
               href={SITE.tel}
-              className="mt-3 block text-center text-xs text-orange-100/50 hover:text-brand-300"
+              className="mt-3 block text-center text-xs text-cream/50 hover:text-brand-300"
             >
               Ou ligue: {SITE.phoneDisplay}
             </a>
@@ -231,7 +231,7 @@ export default function Cart() {
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between text-orange-100/70">
+    <div className="flex items-center justify-between text-cream/70">
       <span>{label}</span>
       <span>{value}</span>
     </div>
